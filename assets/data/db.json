@@ -1,0 +1,32 @@
+[
+  {
+    "name": "John",
+    "rating": 4.1,
+    "review": "ดีจริงๆ"
+  },
+  {
+    "name": "Uke",
+    "rating": 4.5,
+    "review": "Very nice"
+  },
+  {
+    "name": "Akike",
+    "rating": 3.7,
+    "review": "It's ok"
+  },
+  {
+    "name": "Cheasee",
+    "rating": 4.0,
+    "review": "พนักงานบริการดีมากกกก"
+  },
+  {
+    "name": "Pomti",
+    "rating": 4.8,
+    "review": "Wow,It's so good"
+  },
+  {
+    "name": "Knight",
+    "rating": 2.5,
+    "review": "รออาหารนานเกิน อ๊ากกกกกกกกกกกกกกกกกก ไปที่อื่นดีกว่าา"
+  }
+]
