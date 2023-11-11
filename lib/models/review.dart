@@ -1,16 +1,16 @@
-class Review {
+class Reviews {
   final String name;
   final double rating;
   final String review;
 
-  Review({
+  Reviews({
     required this.name,
     required this.rating,
     required this.review,
   });
 
-  factory Review.fromJson(Map<String, dynamic> json) {
-    return Review(
+  factory Reviews.fromJson(Map<String, dynamic> json) {
+    return Reviews(
       name: json['name'],
       rating: json['rating'],
       review: json['review'],

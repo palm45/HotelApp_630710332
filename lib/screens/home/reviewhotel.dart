@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:projectmobileapp/models/review.dart';
 import 'package:projectmobileapp/repositories/hotel_repository.dart';
-import 'package:projectmobileapp/screens/home/add_reviewhotel.dart';
+import 'package:projectmobileapp/screens/home/add_reviews.dart';
+import 'package:projectmobileapp/screens/home/review_list_item.dart';
+
 
 class ReviewHotelPage extends StatefulWidget {
+
   const ReviewHotelPage({super.key});
 
   @override
@@ -13,7 +16,7 @@ class ReviewHotelPage extends StatefulWidget {
 }
 
 class _ReviewHotelPageState extends State<ReviewHotelPage> {
-  List<Review>? _reviews;
+  List<Reviews>? _reviews;
   var _isLoading = false;
   String? _errorMessage;
 
@@ -32,9 +35,8 @@ class _ReviewHotelPageState extends State<ReviewHotelPage> {
     await Future.delayed(Duration(seconds: 2)); //โหลดหน้าเว็บ
 
     try {
-      var reviews = await HotelRepository.getReviews();
+      var reviews = await HotelRepository().getReviews();
       debugPrint('Number of reviews: ${reviews.length}');
-      debugPrint('${reviews}');
 
       setState(() {
         _reviews = reviews;
@@ -50,24 +52,28 @@ class _ReviewHotelPageState extends State<ReviewHotelPage> {
     }
   }
 
-  buildError() => Center(
-      child: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child:
-          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(_errorMessage ?? '', textAlign: TextAlign.center),
-            SizedBox(height: 32.0),
-            ElevatedButton(onPressed: getReviews, child: Text('Retry'))
-          ])));
-
-  buildLoadingOverlay() => Container(
-      color: Colors.black.withOpacity(0.2),
-      child: Center(child: CircularProgressIndicator()));
-
-
-
   @override
   Widget build(BuildContext context) {
+    buildLoadingOverlay() => Container(
+        color: Colors.black.withOpacity(0.2),
+        child: Center(child: CircularProgressIndicator()));
+
+    buildError() => Center(
+        child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child:
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(_errorMessage ?? '', textAlign: TextAlign.center),
+              SizedBox(height: 32.0),
+              ElevatedButton(onPressed: getReviews, child: Text('Retry'))
+            ])));
+
+    buildList() => ListView.builder(
+        itemCount: _reviews!.length,
+        itemBuilder: (ctx, i) {
+          Reviews reviewlist = _reviews![i];
+          return ReviewsListItem(reviewlist: reviewlist);
+        });
 
     handleClickAdd() {
       Navigator.pushNamed(context, AddHotelPage.routeName).whenComplete(() {
@@ -92,89 +98,13 @@ class _ReviewHotelPageState extends State<ReviewHotelPage> {
           ],
         )
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: handleClickAdd,
-          child: Icon(Icons.add)
-      ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: handleClickAdd, child: Icon(Icons.add)),
       body:Stack(
         children: [
-          if(_reviews?.isNotEmpty ?? false) ListView.builder(
-            itemCount: _reviews!.length,
-            itemBuilder: (ctx, i) {
-            Review reviewlist = _reviews![i];
-
-            var textTheme = Theme.of(context).textTheme;
-            var colorScheme = Theme.of(context).colorScheme;
-            var hasRating = reviewlist.rating > 0;
-            var numWholeStar = reviewlist.rating.truncate();
-            var fraction = reviewlist.rating - numWholeStar;
-            var showHalfStar = fraction >= 0.5;
-            var numBlankStar = 5 - numWholeStar - (showHalfStar ? 1 : 0);
-            const iconSize = 20.0;
-
-            return Card(
-              margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        Row(
-                            children: [
-                              Container(
-                                  width: 60.0,
-                                  height: 60.0,
-                                  color: colorScheme.background,
-                                  child: Center(child: Icon(Icons.person, size: 30.0))
-                              ),
-                              SizedBox(width: 8.0),
-                              Expanded(child: Text(reviewlist.name, style: textTheme.titleLarge)),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    hasRating ? Padding(
-                                      padding: const EdgeInsets.only(right: 55),
-                                      child: Row(
-                                          children: [
-                                            for (var i = 0; i < numWholeStar; i++)
-                                              Icon(Icons.star, size: iconSize),
-                                            if (showHalfStar) Icon(Icons.star_half, size: iconSize),
-                                            for (var i = 0; i < numBlankStar; i++)
-                                              Icon(Icons.star_border, size: iconSize),
-                                          ]),
-                                    ) : Text('ยังไม่มีคะแนน'),
-                                  ]),
-
-                              ]
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 70),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width*0.5,
-                                child: Text(
-                                  'Review : ${reviewlist.review.toString()}',
-
-                                  textAlign: TextAlign.left,
-                                  maxLines: 10,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                  ],
-                )
-              )
-            );
-          }),
+          if(_reviews?.isNotEmpty ?? false) buildList(),
           if (_errorMessage != null) buildError(),
-          if (_isLoading) buildLoadingOverlay()
+          if (_isLoading) buildLoadingOverlay(),
         ],
       )
     );

@@ -3,28 +3,28 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:projectmobileapp/repositories/hotel_repository.dart';
 
 class AddHotelPage extends StatefulWidget {
-  static const routeName = 'add_reviewhotel';
+  static const routeName = 'add_hotel';
 
   const AddHotelPage({super.key});
 
   @override
-  State<AddHotelPage> createState() => _AddHotelPageState();
+  State<AddHotelPage> createState() => _AddToiletPageState();
 }
 
-class _AddHotelPageState extends State<AddHotelPage> {
-  var _isLoading = false;
-  String? _errorMessage;
-
+class _AddToiletPageState extends State<AddHotelPage> {
   final _reviewNameController = TextEditingController();
   final _reviewsController = TextEditingController();
-  double ratings = 0;
+  double _ratings = 0;
+
+  var _isLoading = false;
+  String? _errorMessage;
 
   validateForm() {
     return _reviewNameController.text.isNotEmpty &&
         _reviewsController.text.isNotEmpty;
   }
 
-  saveToilet() async {
+  saveHotel() async {
     setState(() {
       _isLoading = true;
       _errorMessage = null;
@@ -33,10 +33,10 @@ class _AddHotelPageState extends State<AddHotelPage> {
     await Future.delayed(Duration(seconds: 2));
 
     try {
-      var reviewName = _reviewNameController.text;
-      var review = _reviewsController.text;
+      String reviewName = _reviewNameController.text;
+      String review = _reviewsController.text;
 
-      await HotelRepository.addReview(name: reviewName, rating: ratings, review: review);
+      await HotelRepository().addReview(name: reviewName, rating: _ratings, review: review);
 
       if (mounted) Navigator.pop(context);
     } catch (e) {
@@ -58,7 +58,7 @@ class _AddHotelPageState extends State<AddHotelPage> {
 
     handleClickSave() {
       if (validateForm()) {
-        saveToilet();
+        saveHotel();
       }
     }
 
@@ -103,8 +103,9 @@ class _AddHotelPageState extends State<AddHotelPage> {
                       color: Colors.amber,
                     ),
                     onRatingUpdate: (rating) {
-                      ratings = rating;
-                      print(rating);
+                      setState(() {
+                        _ratings = rating;
+                      });
                     },
                   ),
                 ),
