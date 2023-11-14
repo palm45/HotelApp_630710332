@@ -88,11 +88,14 @@ class _ReviewHotelPageState extends State<ReviewHotelPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Review',
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold
+            Padding(
+              padding: const EdgeInsets.only(right: 60),
+              child: Text(
+                'Review',
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold
+                ),
               ),
             ),
           ],

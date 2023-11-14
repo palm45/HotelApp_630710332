@@ -63,7 +63,8 @@ flutter:
   assets:
     - assets/images/icon_hotel.png
     - assets/images/pexels-pixabay.jpg
-    - assets/data/
+    - assets/images/backgroundpastel.jpg
+    - assets/images/hotel.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

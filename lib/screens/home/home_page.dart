@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:projectmobileapp/models/review.dart';
+import 'package:projectmobileapp/screens/home/detail_hotel.dart';
 import 'package:projectmobileapp/screens/home/reviewhotel.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,14 +23,11 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Image.asset('assets/images/icon_hotel.png',scale: 7),
-            ),
+            Image.asset('assets/images/icon_hotel.png',scale: 9),
             Text(
               'Hotel Sweet Home',
               style: TextStyle(
-                fontSize: 35,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -50,7 +48,13 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context){
+                          return DetailPage();
+                        }
+                    ));
+                  },
                   borderRadius: BorderRadius.circular(30),
                   splashColor: Colors.black.withOpacity(0.1),
                   hoverColor: Colors.black.withOpacity(0.2),

@@ -19,8 +19,7 @@ class HotelRepository {
 
   Future<void> addReview({required String name, required double rating, required String review}) async {
     try {
-      var result = await ApiCaller()
-          .post('reviews', params: {'name': name, 'rating': rating, 'review': review});
+      await ApiCaller().post('reviews', params: {'name': name, 'rating': rating, 'review': review});
     } catch (e) {
       // TODO:
       rethrow;
