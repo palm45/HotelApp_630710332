@@ -69,7 +69,7 @@ class ReviewsListItem extends StatelessWidget {
                               '${reviewlist.review.toString()}',
 
                               textAlign: TextAlign.left,
-                              maxLines: 10,
+                              maxLines: 20,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
