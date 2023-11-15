@@ -54,7 +54,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width*0.7,
-                    child: Text('        โรงแรมนี้ได้รับกการรับรองจากสมาคม illuminatic แล้วว่าเป็นโรงแรมที่ดีมากๆ '
+                    child: Text('        โรงแรมนี้ได้รับการรับรองจากสมาคม illuminatic แล้วว่าเป็นโรงแรมที่ดีมากๆ '
                       'ซึ่งทางเราภูมิใจนำเสนอห้องพักของเรามีเตียง 2 เตียง 20 ห้องน้ำ ห้องลับอีก 1 ห้อง '
                       'ให้คุณไปทำภารกิจกอบกู้จักรวาลได้ทุกวัน เพียงราคา 199 บาทเท่านั้น!! นอกจากนี้ทางเรายังมีพนักงานจากองกรณ์ลับ G.I.J.O.E '
                       'คอยให้บริการอาหาร และทำความสะอาดถึงห้องของลูกค้า ซึ่งลูกค้าสามารถเรียกได้ทุกเมื่ออีกด้วย นอกจากนี้ด้านนอกยัง'
@@ -63,6 +63,44 @@ class _DetailPageState extends State<DetailPage> {
                       'ที่มีมังกรจากป่าหิมพานธ์ให้คุณไปถ่ายรูป ให้อาหาร และยังสามารถขึ้นไปขี่ได้'
                       'ตลอดเวลาเลยอีกด้วย'),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width*0.7,
+                      child: Column(
+                        children: [
+                          Text(
+                              'สนใจพักติดต่อ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              )
+                          ),
+                          Text(
+                              'เบอร์โทรศัพท์:099-871-5648',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              )
+                          ),
+                          Text(
+                              'Facebook:Hotel Sweet Home',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              )
+                          ),
+                          Text(
+                              'Ig:Hotel Sweet Home',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              )
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
