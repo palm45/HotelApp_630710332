@@ -99,6 +99,8 @@ class _AddToiletPageState extends State<AddHotelPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                         controller: _reviewsController,
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                             hintText: 'Comment',
                             border: OutlineInputBorder(
