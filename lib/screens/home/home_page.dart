@@ -42,38 +42,35 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context){
-                          return DetailPage();
-                        }
-                    ));
-                  },
-                  borderRadius: BorderRadius.circular(30),
-                  splashColor: Colors.black.withOpacity(0.1),
-                  hoverColor: Colors.black.withOpacity(0.2),
-                  highlightColor: Colors.black.withOpacity(0.12),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.blueGrey,
-                      border: Border.all(
-                        color: Colors.black,
-                      )
-                    ),
-                    width: MediaQuery.of(context).size.width*0.3,
-                    height: 50,
-                    child: Center(
-                      child: Text(
-                          'Detail',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20
-                        ),
+              child: InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context){
+                        return DetailPage();
+                      }
+                  ));
+                },
+                borderRadius: BorderRadius.circular(30),
+                splashColor: Colors.black.withOpacity(0.1),
+                hoverColor: Colors.black.withOpacity(0.2),
+                highlightColor: Colors.black.withOpacity(0.12),
+                child: Ink(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.blueGrey,
+                    border: Border.all(
+                      color: Colors.black,
+                    )
+                  ),
+                  width: MediaQuery.of(context).size.width*0.3,
+                  height: 50,
+                  child: Center(
+                    child: Text(
+                        'Detail',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20
                       ),
                     ),
                   ),
